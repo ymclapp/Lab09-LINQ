@@ -28,30 +28,45 @@ namespace LINQ_Lab09.Tests
       //Like JSON.parse()
       RootObject root = JsonConvert.DeserializeObject<RootObject>(json);
 
-      //Assert
       Assert.Equal(147, root.features.Count);  //this is a property
 
       var Allneighborhoods = root.features
-        .Where(feature =>
-        feature.properties.neighborhood != "");
+        .Where(feature => feature.properties.neighborhood !="");
+       
 
       var Allneighborhoodscount = Allneighborhoods.Count();
 
-      //var AllBlankneighborhoods = root.features
-      //  .Where(feature => feature.properties.neighborhood.IsNotEmpty());
-
-     // var AllBlankneighborhoodscount = AllBlankneighborhoods.Count();
-
+      //Assert
       Assert.Equal(143, Allneighborhoodscount);  //this is all non-blank neighborhoods
 
-      var inEastVillage = root.features
-      .Where(feature =>
-      feature.properties.neighborhood == "East Village");
+    }
 
-      var inEastVillagecount = inEastVillage.Count();//this is a LINQ count that will count any IEnumberable that you tell it
+    [Fact]
+    public void Gets_distinct_count()
+    {
 
-      Assert.Equal(2, inEastVillagecount);
+      //Arrange
+      //Read the raw JSON data
+      string json = File.ReadAllText("data.json");
+      Assert.NotEmpty(json);
 
+      //Act
+      //Convert to C# object
+      //Like JSON.parse()
+      RootObject root = JsonConvert.DeserializeObject<RootObject>(json);
+
+      Assert.Equal(147, root.features.Count);  //this is a property
+    //Act
+      var AllDistinctneighborhoods = root.features
+        .Select(feature => feature.properties.neighborhood)
+        .Where(hoods => hoods != "")
+        .Distinct()
+        .OrderBy(hoods => hoods);
+
+      var AllDistinctneighborhoodscount = AllDistinctneighborhoods.Count();
+
+      //Assert
+      Assert.Equal(39, AllDistinctneighborhoodscount);  //this is all non-blank neighborhoods
 
     }
 
