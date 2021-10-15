@@ -9,11 +9,9 @@ using Newtonsoft.Json.Linq;
 
 namespace LINQ_Lab09
 {
-  public class NeighborhoodQuery
+  public class RootObject
   {
-    public class PopulateNeighborhoodList
-    {
-     
-    }
+    public string type { get; set; }
+    public List<Feature> features { get; set; }
   }
 }
