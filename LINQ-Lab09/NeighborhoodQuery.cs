@@ -11,6 +11,9 @@ namespace LINQ_Lab09
 {
   public class NeighborhoodQuery
   {
-
+    public class PopulateNeighborhoodList
+    {
+     
+    }
   }
 }
