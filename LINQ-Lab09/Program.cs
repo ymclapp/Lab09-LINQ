@@ -36,8 +36,8 @@ namespace LINQ_Lab09
                                select neighborhood;
         var AllNeighborhoodscount = AllNeighborhoods.Count();
       }
-      Console.WriteLine($"Total:  ");
-      Console.WriteLine("This should be where the neighborhoods count is");
+      Console.WriteLine($"Total: [put count here] ");
+      //Console.WriteLine("This should be where the neighborhoods count is {");
     }
     }
 }
