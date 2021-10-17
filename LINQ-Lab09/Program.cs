@@ -29,14 +29,16 @@ namespace LINQ_Lab09
 
     static void Neighborhoods(RootObject root)
     {
-      //var Allneighborhoods = Feature
-      //.Where(feature => feature.properties.neighborhood != "");
+      //To show all neighborhoods
       {
-        var AllNeighborhoods = from neighborhood in root.features
-                               select neighborhood;
+        var AllNeighborhoods = from neighborhood in root.features select neighborhood;
         var AllNeighborhoodscount = AllNeighborhoods.Count();
+
+        foreach(var Neighborhoods in AllNeighborhoods)//shows a line item for each of the 147, but it says Here are the neighborhoods System.Linq.Enumerable+SelectListIterator`2[LINQ_Lab09.Feature,LINQ_Lab09.Feature]
+        Console.WriteLine($"Here are the neighborhoods {Neighborhoods.properties.neighborhood}");
+        Console.WriteLine($"Total: {AllNeighborhoodscount} ");
       }
-      Console.WriteLine($"Total: [put count here] ");
+      //Console.WriteLine($"Total: {AllNeighborhoodscount} ");
       //Console.WriteLine("This should be where the neighborhoods count is {");
     }
     }
