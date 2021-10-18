@@ -59,7 +59,7 @@ namespace LINQ_Lab09.Tests
     //Act
       var AllDistinctneighborhoods = root.features
         .Select(feature => feature.properties.neighborhood)
-        .Where(hoods => hoods != "")
+        .Where(hoods => hoods != "")//get rid of .where to get ALL neighborhoods
         .Distinct()
         .OrderBy(hoods => hoods);
 
@@ -68,6 +68,29 @@ namespace LINQ_Lab09.Tests
       //Assert
       Assert.Equal(39, AllDistinctneighborhoodscount);  //this is all non-blank neighborhoods
 
+    }
+
+    [Fact]
+    public void Get_ALL_neighborhoods_from_file()
+    {
+
+      //Arrange
+      //Read the raw JSON data
+      string json = File.ReadAllText("data.json");
+      Assert.NotEmpty(json);
+
+      //Act
+      //Convert to C# object
+      //Like JSON.parse()
+      RootObject root = JsonConvert.DeserializeObject<RootObject>(json);
+      var Allneighborhoods = root.features;
+      //.Where(feature =>
+      //feature.properties.neighborhood != "");
+
+      var Allneighborhoodscount = Allneighborhoods.Count();
+
+      //Assert
+      Assert.Equal(147, Allneighborhoodscount);  //this is ALL neighborhoods
     }
 
     [Fact]
@@ -90,7 +113,7 @@ namespace LINQ_Lab09.Tests
       var Allneighborhoodscount = Allneighborhoods.Count();
 
       //Assert
-      Assert.Equal(143, Allneighborhoodscount);  //this is all non-blank neighborhoods
+      Assert.Equal(143, Allneighborhoodscount);  //this is ALL neighborhoods
     }
 
     [Fact]
